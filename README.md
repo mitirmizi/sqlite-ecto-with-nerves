@@ -1,32 +1,9 @@
-# SqliteNerves
+# Using Sqlite3 and Ecto with Elixir Nerves
 
-**TODO: Add description**
+This repository is to host a basic tutorial for absolute beginners in Elixir and Nerves world, who
+want to implment an SQLite database on their embedded device.
 
-## Targets
+Refer to [this tutorial](tutorial.md) for learning all the nitigrities about setting a base Nerves 
+project, in which you can ssh and push OTA updates, and setting a base sqlite database.
 
-Nerves applications produce images for hardware targets based on the
-`MIX_TARGET` environment variable. If `MIX_TARGET` is unset, `mix` builds an
-image that runs on the host (e.g., your laptop). This is useful for executing
-logic tests, running utilities, and debugging. Other targets are represented by
-a short name like `rpi3` that maps to a Nerves system image for that platform.
-All of this logic is in the generated `mix.exs` and may be customized. For more
-information about targets see:
-
-https://hexdocs.pm/nerves/targets.html#content
-
-## Getting Started
-
-To start your Nerves app:
-  * `export MIX_TARGET=my_target` or prefix every command with
-    `MIX_TARGET=my_target`. For example, `MIX_TARGET=rpi3`
-  * Install dependencies with `mix deps.get`
-  * Create firmware with `mix firmware`
-  * Burn to an SD card with `mix firmware.burn`
-
-## Learn more
-
-  * Official docs: https://hexdocs.pm/nerves/getting-started.html
-  * Official website: https://nerves-project.org/
-  * Forum: https://elixirforum.com/c/nerves-forum
-  * Discussion Slack elixir-lang #nerves ([Invite](https://elixir-slackin.herokuapp.com/))
-  * Source: https://github.com/nerves-project/nerves
+The main library we'll be using is this [sqlite_ecto2](https://github.com/elixir-sqlite/sqlite_ecto2)

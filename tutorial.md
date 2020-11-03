@@ -1,4 +1,4 @@
-# Using Sqlite3 and ecto with nerves
+# Using Sqlite3 and Ecto with Elixir Nerves
 
 ### Preface
 For this tutorial we'll be using sqlite_ecto2 library on a raspberry pi. If you're new to nerves and
