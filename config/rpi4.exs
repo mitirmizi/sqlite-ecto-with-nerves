@@ -5,5 +5,5 @@ config :sqlite_nerves, led_list: [:green, :red]
 config :nerves_leds, names: [green: "led0", red: "led1"]
 
 config :sqlite_nerves, SqliteNerves.Repo,
-    adapter: Sqlite.Ecto2,
-    database: "/root/#{Mix.env}_db_name.sqlite3"
+   adapter: Sqlite.Ecto2,
+   database: "/root/#{Mix.env}_db_name.sqlite3"

@@ -86,6 +86,7 @@ pi.
 ### Starting Sqlite-Ecto module
 First add `sqlite_ecto2` dependency in `mix.exs`.
 ```elixir
+
     def deps do
     [ 
         # ... other dependencies
@@ -285,6 +286,20 @@ defp migrate_repo!(repo) do
   pid && repo.stop(pid)
   Mix.Ecto.restart_apps_if_migrated(apps, migrated)
 end
+```
+### Errors and their meanings
+
+If you have db created in a read-only area of the device you get error:
+
+```bash
+iex(1)> SqliteNerves.Repo.insert(%SqliteNerves.User{name: "Ashe", email: "league@example.com"})
+** (ArgumentError) argument error
+    (stdlib 3.13.2) :ets.lookup_element(Ecto.Registry, nil, 3)
+    (ecto 2.2.11) lib/ecto/registry.ex:18: Ecto.Registry.lookup/1
+    (ecto 2.2.11) lib/ecto/adapters/sql.ex:251: Ecto.Adapters.SQL.sql_call/6
+    (ecto 2.2.11) lib/ecto/adapters/sql.ex:542: Ecto.Adapters.SQL.struct/8
+    (ecto 2.2.11) lib/ecto/repo/schema.ex:547: Ecto.Repo.Schema.apply/4
+    (ecto 2.2.11) lib/ecto/repo/schema.ex:213: anonymous fn/14 in Ecto.Repo.Schema.do_insert/4
 ```
 
 #### References
