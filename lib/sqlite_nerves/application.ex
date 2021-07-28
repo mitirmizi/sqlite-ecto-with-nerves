@@ -12,11 +12,15 @@ defmodule SqliteNerves.Application do
     :ok = setup_db!()
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
+    import Supervisor.Spec, warn: false
+
     opts = [strategy: :one_for_one, name: SqliteNerves.Supervisor]
 
     children =
       [
-        SqliteNerves.Repo,
+        {SqliteNerves.Repo, []},
+
+#        {SqliteNerves.EctoMigrator, []},
         # Children for all targets
         # Starts a worker by calling: SqliteNerves.Worker.start_link(arg)
         # {SqliteNerves.Worker, arg},
@@ -84,6 +88,22 @@ defmodule SqliteNerves.Application do
 
     pid && repo.stop(pid)
     Mix.Ecto.restart_apps_if_migrated(apps, migrated)
+  end
+
+  def drop do
+    repos = Application.get_env(@otp_app, :ecto_repos)
+
+    for repo <- repos do
+      case drop(repo) do
+        :ok -> :ok
+        {:error, :already_down} -> :ok
+        {:error, reason} -> raise reason
+      end
+    end
+  end
+
+  def drop(repo) do
+    repo.__adapter__.storage_down(repo.config)
   end
 
 end

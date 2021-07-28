@@ -187,12 +187,12 @@ end
 ```
 
 Notice how it resembles the migration we just wrote. Let's quickly make sure the model is working with iex:
-```bash
+```elixir
 teemo@ezreal:~/courses/elixir/sqlite_nerves$ iex -S mix
 Erlang/OTP 23 [erts-11.1] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:1] [hipe]
 Interactive Elixir (1.10.4) - press Ctrl+C to exit (type h() ENTER for help)
  ❄ Good Luck with Elixir ❄
-iex(1)> SqliteNerves.Repo.insert(%SqliteNerves.User{name: "Ashe", email: "league@example.com"})      
+iex(1)> SqliteNerves.Repo.insert(%SqliteNerves.User{name: "Ashe", email: "league@example.com"})
 
 19:50:52.550 [debug] QUERY OK db=19.1ms
 INSERT INTO "users" ("email","name","inserted_at","updated_at") VALUES (?1,?2,?3,?4);
@@ -287,6 +287,8 @@ defp migrate_repo!(repo) do
   Mix.Ecto.restart_apps_if_migrated(apps, migrated)
 end
 ```
+### Additional infomation
+Access DB configs in iex: `SqliteNerves.Repo.config` 
 ### Errors and their meanings
 
 If you have db created in a read-only area of the device you get error:
